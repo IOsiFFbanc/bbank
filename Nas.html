@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Настройки | ЯжРубь Банк</title>
+    <style>
+        :root {
+            --primary: #005b82;
+            --accent: #ff7e00;
+            --danger: #e74c3c;
+            --light: #ffffff;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f9fc;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #005b82, #00334d);
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .content {
+            flex: 1;
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 0 15px;
+            width: 100%;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        
+        .title {
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .reset-section {
+            background: #fff8f8;
+            border: 1px solid #ffdddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 30px;
+        }
+        
+        .reset-title {
+            color: var(--danger);
+            text-align: center;
+            margin-top: 0;
+        }
+        
+        .reset-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--danger);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .reset-btn:hover {
+            background: #c0392b;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+        
+        .modal-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .modal-btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .confirm-btn {
+            background: var(--danger);
+            color: white;
+        }
+        
+        .cancel-btn {
+            background: #ddd;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 15px;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">ЯжРубь Банк</div>
+        <div>Настройки приложения</div>
+    </div>
+    
+    <div class="content">
+        <div class="card">
+            <h2 class="title">Управление данными</h2>
+            
+            <div class="reset-section">
+                <h3 class="reset-title">Опасная зона</h3>
+                <p>Сбросить весь прогресс. Это действие нельзя отменить!</p>
+                <button class="reset-btn" id="resetBtn">Сбросить всё</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        © 2025 ЯжРубь Банк. Все права защищены.
+    </div>
+    
+    <div class="modal" id="confirmModal">
+        <div class="modal-content">
+            <h2>Подтвердите сброс</h2>
+            <p>Вы уверены, что хотите полностью сбросить весь прогресс? Все данные будут удалены без возможности восстановления.</p>
+            <div class="modal-buttons">
+                <button class="modal-btn cancel-btn" id="cancelBtn">Отмена</button>
+                <button class="modal-btn confirm-btn" id="confirmBtn">Сбросить</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Элементы
+        const resetBtn = document.getElementById('resetBtn');
+        const confirmModal = document.getElementById('confirmModal');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const confirmBtn = document.getElementById('confirmBtn');
+        
+        // Автоочистка для гостей при закрытии страницы
+        window.addEventListener('beforeunload', () => {
+            if (localStorage.getItem('authMode') === 'guest') {
+                localStorage.clear();
+            }
+        });
+        
+        // Открытие модального окна
+        resetBtn.addEventListener('click', () => {
+            confirmModal.style.display = 'flex';
+        });
+        
+        // Отмена сброса
+        cancelBtn.addEventListener('click', () => {
+            confirmModal.style.display = 'none';
+        });
+        
+        // Подтверждение сброса
+        confirmBtn.addEventListener('click', () => {
+            // Полная очистка localStorage
+            localStorage.clear();
+            confirmModal.style.display = 'none';
+            alert('Все данные успешно сброшены!');
+            window.location.href = 'clicker.html'; // Перенаправляем на главную
+        });
+        
+        // Закрытие модального окна при клике вне его
+        window.addEventListener('click', (e) => {
+            if (e.target === confirmModal) {
+                confirmModal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

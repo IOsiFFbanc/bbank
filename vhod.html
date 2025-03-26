@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход | ЯжРубь Банк</title>
+    <style>
+        :root {
+            --primary: #005b82;
+            --secondary: #e6f2f7;
+            --accent: #ff7e00;
+            --text: #333333;
+            --light: #ffffff;
+            --dark: #00334d;
+        }
+        
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #f5f9fc;
+            margin: 0;
+            padding: 0;
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .bank-header {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: var(--light);
+            padding: 30px 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .bank-logo {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        
+        .bank-slogan {
+            font-size: 16px;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+        
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .welcome-text {
+            max-width: 700px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+        
+        .welcome-text h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .auth-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            max-width: 350px;
+        }
+        
+        .auth-button {
+            padding: 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .login-btn {
+            background-color: var(--primary);
+            color: var(--light);
+        }
+        
+        .login-btn:hover {
+            background-color: var(--dark);
+        }
+        
+        .register-btn {
+            background-color: var(--accent);
+            color: var(--light);
+        }
+        
+        .register-btn:hover {
+            background-color: #e67300;
+        }
+        
+        .guest-btn {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .guest-btn:hover {
+            background-color: var(--secondary);
+        }
+        
+        .bank-footer {
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        /* Модальные окна */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: var(--light);
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+        
+        .modal-title {
+            color: var(--primary);
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--accent);
+            color: var(--light);
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: #e67300;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+        }
+        
+        .close-btn:hover {
+            color: var(--text);
+        }
+    </style>
+</head>
+<body>
+    <header class="bank-header">
+        <div class="bank-logo">ЯжРубь Банк</div>
+        <div class="bank-slogan">
+            Ваш надежный партнер в финансах! Наш банк - это место, где каждый клиент ощущает заботу и внимание.
+        </div>
+    </header>
+    
+    <div class="main-content">
+        <div class="welcome-text">
+            <h2>Добро пожаловать в ЯжРубь Банк!</h2>
+            <p>
+                Мы стремимся предоставлять нашим пользователям лучшие условия обслуживания, современный и стильный дизайн, 
+                а также оперативно решаем любые возникающие вопросы круглосуточно. Ведь ваше удобство и комфорт - наш приоритет. 
+                Доверьтесь нам и позвольте сделать вашу финансовую жизнь легче и приятнее.
+            </p>
+        </div>
+        
+        <div class="auth-options">
+            <button class="auth-button login-btn" id="loginBtn">Вход в личный кабинет</button>
+            <button class="auth-button register-btn" id="registerBtn">Зарегистрироваться</button>
+            <button class="auth-button guest-btn" id="guestBtn">Войти как гость</button>
+        </div>
+    </div>
+    
+    <footer class="bank-footer">
+        © 2025 ЯжРубь Банк.
+    </footer>
+    
+    <!-- Модальное окно входа -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeLogin">&times;</span>
+            <h2 class="modal-title">Вход в личный кабинет</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Пароль</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="submit-btn">Войти</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Модальное окно регистрации -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeRegister">&times;</span>
+            <h2 class="modal-title">Регистрация в ЯжРубь Банке</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="regName">ФИО</label>
+                    <input type="text" id="regName" required>
+                </div>
+                <div class="form-group">
+                    <label for="regEmail">Email</label>
+                    <input type="email" id="regEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="regPhone">Телефон</label>
+                    <input type="tel" id="regPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">Пароль</label>
+                    <input type="password" id="regPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="regConfirm">Подтвердите пароль</label>
+                    <input type="password" id="regConfirm" required>
+                </div>
+                <button type="submit" class="submit-btn">Зарегистрироваться</button>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        // Элементы
+        const loginBtn = document.getElementById('loginBtn');
+        const registerBtn = document.getElementById('registerBtn');
+        const guestBtn = document.getElementById('guestBtn');
+        const loginModal = document.getElementById('loginModal');
+        const registerModal = document.getElementById('registerModal');
+        const closeLogin = document.getElementById('closeLogin');
+        const closeRegister = document.getElementById('closeRegister');
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        
+        // Открытие модальных окон
+        loginBtn.addEventListener('click', () => {
+            loginModal.style.display = 'flex';
+        });
+        
+        registerBtn.addEventListener('click', () => {
+            registerModal.style.display = 'flex';
+        });
+        
+        // Закрытие модальных окон
+        closeLogin.addEventListener('click', () => {
+            loginModal.style.display = 'none';
+        });
+        
+        closeRegister.addEventListener('click', () => {
+            registerModal.style.display = 'none';
+        });
+        
+        // Клик вне модального окна
+        window.addEventListener('click', (e) => {
+            if (e.target === loginModal) {
+                loginModal.style.display = 'none';
+            }
+            if (e.target === registerModal) {
+                registerModal.style.display = 'none';
+            }
+        });
+        
+        // Вход как гость
+        guestBtn.addEventListener('click', () => {
+            localStorage.setItem('authMode', 'guest');
+            alert('Вы вошли как гость. Доступны базовые функции.');
+            window.location.href = 'clicker.html';
+        });
+        
+        // Обработка формы входа
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            // Здесь должна быть проверка данных
+            console.log('Вход с:', email, password);
+            
+            // В реальном приложении здесь был бы AJAX-запрос
+            localStorage.setItem('authMode', 'user');
+            alert('Вход выполнен успешно!');
+            loginModal.style.display = 'none';
+            window.location.href = 'clicker.html';
+        });
+        
+        // Обработка формы регистрации
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('regName').value;
+            const email = document.getElementById('regEmail').value;
+            const phone = document.getElementById('regPhone').value;
+            const password = document.getElementById('regPassword').value;
+            const confirm = document.getElementById('regConfirm').value;
+            
+            if (password !== confirm) {
+                alert('Пароли не совпадают!');
+                return;
+            }
+            
+            // Здесь должна быть регистрация
+            console.log('Регистрация:', { name, email, phone, password });
+            
+            // В реальном приложении здесь был бы AJAX-запрос
+            localStorage.setItem('authMode', 'user');
+            alert('Регистрация прошла успешно! Добро пожаловать в ЯжРубь Банк!');
+            registerModal.style.display = 'none';
+            window.location.href = 'clicker.html';
+        });
+    </script>
+</body>
+</html>
